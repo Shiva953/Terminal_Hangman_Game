@@ -14,23 +14,21 @@ class Hangman:
         word = list[random.randint(0,len(list)-1)]
         word.upper()
         l = len(word)
-        str = ""
-        s = ""
-        c=0
-        i=0
+        str,s='',''
+        c,i=0,0
         w = word
+        limit = l+(2*random.randint(1,l))
         print("The word is of",(l),"letters")
-        print("You have got",(l+2),"tries")
-        
+        print("You have got",(limit),"tries")
         while(i<l):
             str = str + "_"
             i+=1
-
+            
         while(str!=word):
             a = input("Enter Your Guessed Letter : ")
             a.upper()
             c+=1
-            if(c<=(l+2)):
+            if(c<=limit):
                 if (a in word): 
                     x = w.index(a)
                     s = str[0:x] + w[x] + str[(x+1):l]
@@ -42,6 +40,7 @@ class Hangman:
                 print(str)
             else:
                 print("Maximum number of tries exceeded. You lost!")
+                print("The word was", word)
                 break
 
         if(str==word):
